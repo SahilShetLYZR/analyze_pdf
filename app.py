@@ -100,6 +100,13 @@ def convert_pdf_to_images(pdf_file_path: str) -> List[str]:
 
     return image_paths
 
+@app.get("/health")
+def health_check():
+    """
+    Health check endpoint to verify if the service is running.
+    """
+    return {"status": "healthy"}
+
 
 @app.post("/analyze-pdf/")
 async def analyze_pdf(file: UploadFile = File(...)):
