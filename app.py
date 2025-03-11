@@ -22,6 +22,14 @@ api_key = os.getenv("MISTRAL_KEY")
 client = Mistral(api_key=api_key)
 os.environ["LLAMA_CLOUD_API_KEY"] = os.getenv("LLAMA_CLOUD_API_KEY")
 
+
+@app.get("/health")
+def health_check():
+     """
+     Health check endpoint to verify if the service is running.
+     """
+     return {"status": "healthy"}
+
 @app.post("/analyze-pdf/")
 async def analyze_pdf(file: UploadFile = File(...)):
     """
